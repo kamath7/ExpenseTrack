@@ -31,6 +31,9 @@ export const ExpenseTracker = () => {
           </form>
         </div>
       </div>
+      <div className="transactions">
+        <h3>Transactions</h3>
+      </div>
     </>
   );
 };
