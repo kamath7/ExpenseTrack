@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useAddTransaction } from "../../hooks/useAddTransaction";
 import { useGetTransactions } from "../../hooks/useGetTransactions";
-
+import { useGetUserInfo } from "../../hooks/useGetUserInfo";
+import './styles.css'
 export const ExpenseTracker = () => {
   const { addTransaction } = useAddTransaction();
   const { transactions } = useGetTransactions();
 
+  const { name, profilePhoto } = useGetUserInfo();
   const [description, setDescription] = useState("");
   const [transactionAmount, settransactionAmount] = useState(0);
   const [transactionType, setTransactionType] = useState("expense");
@@ -23,7 +25,7 @@ export const ExpenseTracker = () => {
     <>
       <div className="expense-tracker">
         <div className="container">
-          <h1>Expense Tracker</h1>
+          <h1>{name}'s Expense Tracker</h1>
           <div className="balance">
             <h2>Your balance</h2>
             <h2>₹0.00</h2>
