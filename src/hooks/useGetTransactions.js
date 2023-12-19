@@ -12,6 +12,7 @@ import { useGetUserInfo } from "./useGetUserInfo";
 export const useGetTransactions = () => {
   const [transactions, setTransactions] = useState([]);
   const transactionCollections = collection(db, "transactions");
+  const { userID } = useGetUserInfo();
   const getTransactions = async () => {
     let unsubscribe;
     try {
@@ -33,7 +34,7 @@ export const useGetTransactions = () => {
     } catch (error) {
       console.log(error);
     }
-    return () => {};
+    return () => unsubscribe();
   };
 
   useEffect(() => {
