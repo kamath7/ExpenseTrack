@@ -24,6 +24,9 @@ export const ExpenseTracker = () => {
       transactionAmount,
       transactionType,
     });
+
+    setDescription("");
+    settransactionAmount(0.0);
   };
 
   const signUserOut = async () => {
@@ -59,12 +62,14 @@ export const ExpenseTracker = () => {
             <input
               type="text"
               placeholder="Description"
+              value={description}
               required
               onChange={(e) => setDescription(e.target.value)}
             />
             <input
               type="number"
               placeholder="Amount"
+              value={transactionAmount}
               required
               onChange={(e) => settransactionAmount(e.target.value)}
             />
