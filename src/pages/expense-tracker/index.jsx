@@ -8,12 +8,13 @@ import { auth } from "../../config/firebase-config";
 import { useNavigate } from "react-router-dom";
 export const ExpenseTracker = () => {
   const { addTransaction } = useAddTransaction();
-  const { transactions } = useGetTransactions();
+  const { transactions, transactionTotals } = useGetTransactions();
 
   const { name, profilePhoto } = useGetUserInfo();
   const [description, setDescription] = useState("");
   const [transactionAmount, settransactionAmount] = useState(0);
   const [transactionType, setTransactionType] = useState("expense");
+  const { balance, totalIncome, totalExpenses } = transactionTotals;
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
@@ -42,16 +43,16 @@ export const ExpenseTracker = () => {
           <h1>{name}'s Expense Tracker</h1>
           <div className="balance">
             <h2>Your balance</h2>
-            <h2>₹0.00</h2>
+            <h2>₹{balance}</h2>
           </div>
           <div className="summary">
             <div className="income">
               <h4>Income</h4>
-              <p>₹0.00</p>
+              <p>₹{totalIncome}</p>
             </div>
             <div className="expenses">
               <h4>Expenses</h4>
-              <p>₹0.00</p>
+              <p>₹{totalExpenses}</p>
             </div>
           </div>
           <form className="add-transaction" onSubmit={onSubmit}>
